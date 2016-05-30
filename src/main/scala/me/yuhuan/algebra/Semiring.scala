@@ -1,15 +1,31 @@
 package me.yuhuan.algebra
 
 /**
- * Represents a semiring.
- *
- * A semiring is a [[lea.algebra.Ring Ring]] in which the set under operation `add` forms a
- * monoid instead of an abelian group (i.e., no requirement for  the additive inverses).
- *
- * @tparam T The type of the elements in the semiring.
- *
- * @author Yuhuan Jiang
- * @version 1.0
- * @since 1.0
- */
-trait Semiring[T] extends AdditiveMonoid[T] with MultiplicativeMonoid[T]
+  * @author Yuhuan Jiang (jyuhuan@gmail.com).
+  */
+trait Semiring[@specialized(Double) X] extends AdditiveMonoid[X] with MultiplicativeMonoid[X]
+
+object Semiring {
+
+  object forInt extends Semiring[Int] {
+    def one: Int = 1
+    def zero: Int = 0
+    def add(a: Int, b: Int): Int = a + b
+    def mul(a: Int, b: Int): Int = a * b
+  }
+
+  object forDouble extends Semiring[Double] {
+    def add(a: Double, b: Double) = a + b
+    def mul(a: Double, b: Double) = a * b
+    def one = 1.0
+    def zero = 0.0
+  }
+
+}
+
+object SemiringTest extends App {
+
+
+
+  val bp = 0
+}

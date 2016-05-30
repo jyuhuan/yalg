@@ -1,16 +1,19 @@
 package me.yuhuan.algebra
 
 /**
- * Represents a field.
- *
- * A field has two abstract operations: `add` and `mul`. The set under operation `add` forms an
- * abelian group, while the set under operation `mul` also forms an abelian group.
- *
- * @tparam T The type of the elements in the field.
- *
- * @author Yuhuan Jiang
- * @version 1.0
- * @since 1.0
- *
- */
-trait Field[T] extends AdditiveGroup[T] with MultiplicativeGroup[T]
+  * @author Yuhuan Jiang (jyuhuan@gmail.com).
+  */
+trait Field[@specialized(Double) X] extends Ring[X] with MultiplicativeGroup[X]
+
+object Field {
+
+  object forDouble extends Field[Double] {
+    def one: Double = 1.0
+    def zero: Double = 0.0
+    def inv(x: Double): Double = 1.0 / x
+    def neg(x: Double): Double = -x
+    def add(a: Double, b: Double): Double = a + b
+    def mul(a: Double, b: Double): Double = a * b
+  }
+
+}
